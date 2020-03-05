@@ -20,7 +20,7 @@ cheer = ['Come on!', 'Keep trying!', 'You can do it!', 'You\'re getting there!'
 
 # difficulty
 y = input(
-    'Welcome to Hangswede! Choose a difficulty level: [easy/normal/hard]')
+    'Welcome to the Swedish Hangman! Choose a difficulty level: [easy/normal/hard]')
 
 if y == 'easy':
     chance = math.ceil(word_len*2)
