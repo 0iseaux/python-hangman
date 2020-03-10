@@ -55,6 +55,7 @@ while '-' in display and display != word:
                 guesses.append(x)
 
     # check input against word
+    x = x.lower()
     if x in word:
         display = (list(display))
         for i in range(word_len):
