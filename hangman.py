@@ -5,7 +5,6 @@ import math
 line_num = math.floor(400*random.random())
 
 with open("allwords.txt", "r") as word_file:
-
     for i, line in enumerate(word_file):
         if i == line_num:
             word = line.strip()
@@ -15,25 +14,33 @@ word_len = len(word)
 display = '-'*word_len
 guesses = []
 
-cheer = ['Come on!', 'Keep trying!', 'You can do it!', 'You\'re getting there!'
-         'Try again!', 'Keep trying!', 'Good luck!', 'Don\'t give up!']
+cheers = ['Come on!', 'Keep trying!', 'You can do it!', 'You\'re getting there!'
+          'Try again!', 'Almost there!!', 'Good luck!', 'Don\'t give up!']
 
-# difficulty
+# set difficulty level
+
+level_set = False
+
 y = input(
     'Welcome to the Swedish Hangman! Choose a difficulty level: [easy/normal/hard]')
 
-if y == 'easy':
-    chance = math.ceil(word_len*2)
-elif y == 'normal':
-    chance = math.ceil(word_len*1.5)
-elif y == "hard":
-    chance = math.ceil(word_len*1.1)
-else:
-    y = input('Choose difficulty level: [easy/normal/hard]')
+while level_set == False:
+    if y.lower() == 'easy':
+        chance = math.ceil(word_len*3)
+        level_set = True
+    elif y.lower() == 'normal':
+        chance = math.ceil(word_len*2)
+        level_set = True
+    elif y.lower() == "hard":
+        chance = math.ceil(word_len*1.3)
+        level_set = True
+    else:
+        y = input(
+            'You must choose one difficulty level to begin: [easy / normal / hard]')
 
 # input
 x = input(
-    '{} Make your first guess! [You have {} lives] (:  '.format(display, chance))
+    'Here we go! The word is: {}! Make your first guess! [You have {} lives] (:  '.format(display, chance))
 
 
 while '-' in display and display != word:
@@ -70,14 +77,14 @@ while '-' in display and display != word:
 
     # more input
     if chance > 1:
-        j = math.floor(random.random()*len(cheer))
+        j = math.floor(random.random()*len(cheers))
         x = input('{} {}! [{} more lives]:  '.format(
-            display, cheer[j], chance))
+            display, cheers[j], chance))
 
     elif chance == 1:
-        j = math.floor(random.random()*len(cheer))
+        j = math.floor(random.random()*len(cheers))
         x = input('{} {}! [last life!]:  '.format(
-            display, cheer[j]))
+            display, cheers[j]))
 
     # lose
     elif chance == 0:
