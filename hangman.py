@@ -40,26 +40,27 @@ while level_set == False:
 
 # input
 x = input(
-    'Here we go! The word is: {}! Make your first guess! [You have {} lives] (:  '.format(display, chance))
+    'Here we go! The word is {}! Make your first guess! [You have {} lives] (:  '.format(display, chance))
 
 
 while '-' in display and display != word:
 
     # check input format
-    if len(x) != 1:
+    while len(x) != 1:
         if len(x) > 1:
             x = input('1 letter at a time! [{} more lives]:  '.format(chance))
         if len(x) == 0:
             x = input(
                 'Make a real guess! [{} more lives]:  '.format(chance))
+
     # register input
-    else:
-        chance -= 1
-        if chance >= 1:
-            if x in guesses and chance >= 1:
-                print('You\'ve guessed \"{}\" already!'.format(x))
-            if x not in guesses:
-                guesses.append(x)
+    chance -= 1
+
+    if chance >= 1:
+        if x in guesses and chance >= 1:
+            print('You\'ve guessed \"{}\" already!'.format(x))
+        if x not in guesses:
+            guesses.append(x)
 
     # check input against word
     x = x.lower()
