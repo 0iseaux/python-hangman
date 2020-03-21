@@ -54,8 +54,6 @@ while '-' in display and display != word:
                 'Make a real guess! [{} more lives]:  '.format(chance))
 
     # register input
-    chance -= 1
-
     if chance >= 1:
         if x in guesses and chance >= 1:
             print('You\'ve guessed \"{}\" already!'.format(x))
@@ -70,6 +68,8 @@ while '-' in display and display != word:
             if word[i] == x:
                 display[i] = x
         display = ''.join(display)
+    else:
+        chance -= 1
 
     # win
     if display == word:
