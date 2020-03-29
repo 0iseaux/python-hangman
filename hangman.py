@@ -43,21 +43,15 @@ cheers = ['Come on!', 'Keep trying!', 'You can do it!', 'You\'re getting there!'
           'Try again!', 'Almost there!!', 'Good luck!', 'Don\'t give up!']
 
 # set difficulty level
-
 level_set = False
 
 y = input(
     'Welcome to the Swedish Hangman! Choose a difficulty level: [easy/normal/hard]')
+y = y.lower()
 
 while level_set == False:
-    if y.lower() == 'easy':
-        # chance = math.ceil(word_len*3)
-        level_set = True
-    elif y.lower() == 'normal':
-        # chance = math.ceil(word_len*2)
-        level_set = True
-    elif y.lower() == "hard":
-        # chance = math.ceil(word_len*1.3)
+
+    if y == 'easy' or y == 'normal' or y == 'hard':
         level_set = True
     else:
         y = input(
@@ -85,11 +79,11 @@ while '-' in display and display != word:
                 print('\nOops!You\'ve guessed \"{}\" already!'.format(x))
             else:
                 print(
-                    '\nHey!You\'ve guessed \"{}\" already (though it was correct)!'.format(x))
+                    '\nHey! You\'ve guessed \"{}\" already (though it was correct)!'.format(x))
         if x not in guesses:
             guesses.append(x)
 
-    # check input against word
+    # if correct guess
     x = x.lower()
     if x in word:
         display = (list(display))
@@ -97,8 +91,17 @@ while '-' in display and display != word:
             if word[i] == x:
                 display[i] = x
         display = ''.join(display)
+
+    # if wrong guess
     else:
-        miss += 1
+        if y == 'easy':
+            miss += 1
+        elif y == 'normal':
+            miss += 3
+        elif y == 'hard':
+            miss += 3
+        if miss > 21:
+            miss = 21
 
     # win
     if display == word:
