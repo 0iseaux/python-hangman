@@ -67,7 +67,7 @@ while '-' in display and display != word:
     # check input format
     while len(x) != 1:
         if len(x) > 1:
-            x = input('1 letter at a time!:\t'.format)
+            x = input('1 letter at a time!\t')
         if len(x) == 0:
             x = input(
                 'Make a real guess!:\t')
